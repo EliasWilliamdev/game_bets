@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1>Resultado do Sorteio</h1>
+    <h2>Número Sorteado: {{ numero_sorteado }}</h2>
+
+    <h2>Vencedores</h2>
+    {% if ganhadores %}
+        <ul>
+            {% for ganhador in ganhadores %}
+                <li>{{ ganhador.nome }} ganhou R$ {{ ganhador.valor * 50 }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum vencedor desta vez.</p>
+    {% endif %}
+
+    <h2>Todas as Apostas</h2>
+    <ul>
+        {% for aposta in apostas %}
+            <li>{{ aposta.nome }} apostou R$ {{ aposta.valor }} no número {{ aposta.numero }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Voltar</a>
+</body>
+</html>

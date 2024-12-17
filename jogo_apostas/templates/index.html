@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Apostas</title>
+</head>
+<body>
+    <h1>Jogo de Apostas</h1>
+
+    <h2>Fazer Aposta</h2>
+    <form action="/fazer_aposta" method="post">
+        <label>Nome:</label>
+        <input type="text" name="nome" required><br>
+        <label>Número (1-99):</label>
+        <input type="number" name="numero" min="1" max="99" required><br>
+        <label>Valor da Aposta:</label>
+        <input type="number" name="valor" step="0.01" required><br>
+        <button type="submit">Fazer Aposta</button>
+    </form>
+
+    <h2>Apostas Registradas</h2>
+    <ul>
+        {% for aposta in apostas %}
+            <li>{{ aposta.nome }} apostou R$ {{ aposta.valor }} no número {{ aposta.numero }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Sortear</h2>
+    <form action="/sortear" method="post">
+        <button type="submit">Realizar Sorteio</button>
+    </form>
+
+    {% if numero_sorteado %}
+    <h2>Último Número Sorteado: {{ numero_sorteado }}</h2>
+    {% endif %}
+
+    <form action="/limpar" method="post">
+        <button type="submit">Limpar Jogo</button>
+    </form>
+</body>
+</html>
